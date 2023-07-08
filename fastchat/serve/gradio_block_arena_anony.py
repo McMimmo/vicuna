@@ -169,9 +169,10 @@ SAMPLING_WEIGHTS = {
     "vicuna-33b": 1.5,
     "vicuna-13b": 1.5,
     "wizardlm-13b": 1.5,
-    "gpt4all-13b-snoozy": 1.5,
     "guanaco-33b": 1.5,
+    "mpt-30b-chat": 1.5,
     "koala-13b": 1.2,
+    "gpt4all-13b-snoozy": 1.2,
     "vicuna-7b": 1.2,
     "mpt-7b-chat": 1.2,
     "oasst-pythia-12b": 1.2,
@@ -185,7 +186,7 @@ SAMPLING_WEIGHTS = {
     "llama-13b": 0.1,
 }
 
-SAMPLING_BOOST_MODELS = []
+SAMPLING_BOOST_MODELS = ["guanaco-33b", "wizardlm-13b", "vicuna-33b", "mpt-30b-chat"]
 
 model_pairs = []
 model_pairs_weights = []
@@ -219,8 +220,8 @@ def add_text(
                     model_pairs_weights.append(w)
 
             model_pairs_weights = model_pairs_weights / np.sum(model_pairs_weights)
-            # for p, w in zip(model_pairs, model_pairs_weights):
-            #    print(p, w)
+            for p, w in zip(model_pairs, model_pairs_weights):
+               print(p, w)
 
         if len(model_pairs) >= 1:
             idx = np.random.choice(len(model_pairs), p=model_pairs_weights)
